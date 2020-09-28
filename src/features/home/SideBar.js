@@ -1,5 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import history from '../../common/history';
 
 const navMenu = [
   { path: '/dashboard/questions', name: 'Questions', icon: 'question-circle' },
@@ -27,6 +29,10 @@ const Navigation = ({ className = null }) => {
 };
 
 function NavigationBar(props) {
+  const onSignout = () => {
+    localStorage.removeItem("myToken");
+    history.push('/login');
+   }
   return (
     <aside>
       <div className="side-nav-container">
@@ -35,6 +41,10 @@ function NavigationBar(props) {
         </div>
         <div className="side-navigation">
           <Navigation />
+          <div>
+            <ExitToAppIcon className="logout" onClick={onSignout}/>
+            <p className="logout-text">Logout</p>
+          </div>
         </div>
       </div>
     </aside>

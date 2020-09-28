@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import SideBar from './SideBar';
 
@@ -17,7 +18,10 @@ export default class App extends Component {
   };
 
   render() {
-   
+    const isAuthenticated =localStorage.getItem('myToken');
+    if(isAuthenticated === null){
+      return <Redirect to="/login" />;
+    }
     return (
       <React.Fragment>
       <div> 

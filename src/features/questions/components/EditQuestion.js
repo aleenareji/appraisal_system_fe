@@ -5,7 +5,7 @@ const EditQuestion = (props) => {
   const _mapToForm = (value) => {
     const formattedQuestions = {
       questionId: value[0],
-      query: value[1]
+      title: value[1]
     }
     return formattedQuestions;
   }
@@ -17,13 +17,13 @@ const EditQuestion = (props) => {
   }, [props.editData])
 
   const onQuestionChange = (event) => {
-    setQuestion({ ...question, query: event.target.value })
+    setQuestion({ ...question, title: event.target.value })
   }
 
   const onSaveEditQuestion = (questionsOnSave) => {
     questionsOnSave.preventDefault();
-    setQuestion(...question,questionsOnSave.query);
-    const saveData = [question.questionId, question.query]
+    setQuestion(...question,questionsOnSave.title);
+    const saveData = [question.questionId, question.title]
     props.onSave(saveData);
   }
 
@@ -36,11 +36,11 @@ const EditQuestion = (props) => {
         <div className="row">
           <div className="col">
             <label className="form-group">Enter your Question*:</label>
-            <textarea  className="form-control" onChange={onQuestionChange} value={question.query}/>
+            <textarea  className="form-control" onChange={onQuestionChange} value={question.title}/>
           </div>
         </div>
         <div className="modal-footer">
-          <button type="submit" className="btn btn-submit" disabled={!question.query}>
+          <button type="submit" className="btn btn-submit" disabled={!question.title}>
             SAVE
             </button>
           <button

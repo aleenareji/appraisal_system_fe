@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 
 const AddQuestion = (props) => {
   const [question, setQuestion] = useState({
-    query: ''
+    title: ''
   })
 
   const onQuestionChange = (event) => {
-    setQuestion({ ...question, query: event.target.value })
+    setQuestion({ ...question, title: event.target.value })
   }
 
   const onSaveAddQuestion = (questionsOnSave) => {
     questionsOnSave.preventDefault();
-    setQuestion(...question, questionsOnSave.query)
+    setQuestion(...question, questionsOnSave.title)
     props.onSaveQuestion(question);
   }
 
@@ -28,7 +28,7 @@ const AddQuestion = (props) => {
         </div>
       </div>
       <div className="modal-footer">
-        <button type="submit" className="btn btn-submit" disabled={!question.query} >
+        <button type="submit" className="btn btn-submit" disabled={!question.title} >
           ADD
               </button>
         <button

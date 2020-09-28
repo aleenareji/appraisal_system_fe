@@ -6,6 +6,7 @@ import history from '../../common/history';
 const navMenu = [
   { path: '/dashboard/questions', name: 'Questions', icon: 'question-circle' },
   {path: '/dashboard/send-notification', name:' Send Notification',icon:'envelope'},
+  {path: '/dashboard/answers', name:'Add Answers',icon:'reply'}
 ];
 const Navigation = ({ className = null }) => {
   return (

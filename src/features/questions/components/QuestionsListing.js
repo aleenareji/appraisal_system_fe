@@ -21,7 +21,7 @@ export default function QuestionsListing(props) {
   const [isDeleteQuestionModalOpen, setDeleQuestionModal] = useState(false);
   const [deleteQuestion, setDeleteQuestion] = useState({
     questionId: '',
-    query: '',
+    title: '',
   });
 
   const editQuestionModalOpen = (editQuestion) => {
@@ -35,7 +35,7 @@ export default function QuestionsListing(props) {
         question[1] = dataOnSave[1];
         const _mapToEdit = {
           questionId:question[0],
-          query:question[1]
+          title:question[1]
         }
         return question;
       }
@@ -48,7 +48,7 @@ export default function QuestionsListing(props) {
   };
 
   const onRemoveModal = (removeQuestion) =>{
-    setDeleteQuestion({questionId:removeQuestion[0],query:removeQuestion[1],})
+    setDeleteQuestion({questionId:removeQuestion[0],title:removeQuestion[1],})
     setDeleQuestionModal(true);
   }
 
@@ -58,7 +58,7 @@ export default function QuestionsListing(props) {
   }
 
   const deleteQuestionModal = () => {
-    const { questionId, query } = deleteQuestion;
+    const { questionId, title } = deleteQuestion;
     if (!isDeleteQuestionModalOpen) return '';
     return (
       <Dialog
@@ -68,9 +68,9 @@ export default function QuestionsListing(props) {
       >
         <div className="questions-container">
           <div className="delete-confirmation">
-            {query !== '' && questionId !== '' ? (
+            {title !== '' && questionId !== '' ? (
               <p>
-                You are deleting <strong>'{query}'</strong>. This action cannot be undone.
+                You are deleting <strong>'{title}'</strong>. This action cannot be undone.
                 Proceed?
               </p>
             ) : (

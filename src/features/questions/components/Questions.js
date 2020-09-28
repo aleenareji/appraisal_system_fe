@@ -53,6 +53,7 @@ function Questions(props) {
     setAddQuestionModal(false);
   };
 
+
   const getDeleteQusetionData = (data) => {
 
     if (deptFilter.department === 'Delivery') {
@@ -98,7 +99,9 @@ function Questions(props) {
           const newId = updatedId.questionId + 1;
           const updatedQuestion = {
             questionId: newId,
-            query: newQuestion.query
+            title: newQuestion.title,
+            name: newQuestion.title,
+            isRequired:true
           }
           question[0].roles.levels.questions.push(updatedQuestion);
           localStorage.setItem('questions', JSON.stringify(question));
@@ -113,7 +116,9 @@ function Questions(props) {
       const newId = updatedId.questionId + 1;
       const updatedQuestion = {
         questionId: newId,
-        query: newQuestion.query
+        title: newQuestion.title,
+        name: newQuestion.title,
+        isRequired:true
       }
 
       question.map(item => {

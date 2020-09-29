@@ -13,7 +13,7 @@ const Navigation = ({ className = null }) => {
       <NavLink to="/dashboard" exact={true} activeClassName="active">
         <li>
           <i className="la la-home"></i>
-          <p>Home</p>
+          <p>Dashboard</p>
         </li>
       </NavLink>
       {navMenu.map((i, index) => (

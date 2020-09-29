@@ -66,7 +66,7 @@ const SendNotification = (props) => {
             onChange={onRolesFilterChange}
             getOptionLabel={(option) => option ? option.roles.position : ""}
             style={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Select Department" variant="outlined" />}
+            renderInput={(params) => <TextField {...params} label="Select Role" variant="outlined" />}
           />
         </div>
         <div className="col-4">
@@ -76,7 +76,7 @@ const SendNotification = (props) => {
             onChange={onLevelsFilterChange}
             getOptionLabel={(option) => option ? option.roles.levels.grade : ""}
             style={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Select Department" variant="outlined" />}
+            renderInput={(params) => <TextField {...params} label="Select Level" variant="outlined" />}
           />
         </div>
       </div>

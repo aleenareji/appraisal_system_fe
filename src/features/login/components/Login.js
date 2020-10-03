@@ -12,16 +12,22 @@ class Login extends Component {
   }
 
   responseGoogle = response => {
+    // localStorage.clear();
     this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
     const data ='token'
+    const details =this.state.userDetails;
+    console.log(details);
     localStorage.setItem('myToken', data);
-    // localStorage.clear();
     history.push('/dashboard');
-  };
+    if(details.googleId === '100922163535934621082')
+        localStorage.setItem('userRole','hr')
+     };
  
   logout = () => {
+    // localStorage.clear();
     this.setState({ isUserLoggedIn: false })
     localStorage.removeItem('myToken');
+  
   };
 
   render() {
@@ -40,7 +46,8 @@ class Login extends Component {
                 </div>
                 <div className="login-footer">
                   <GoogleLogin
-                    clientId="129401063798-c35cmt3qvb046uf4005cq423rl35mmb4.apps.googleusercontent.com"
+                    // clientId="129401063798-c35cmt3qvb046uf4005cq423rl35mmb4.apps.googleusercontent.com"
+                    clientId="233962906901-b6r1oi85g07f50lddoq1grfqjtpv55lr.apps.googleusercontent.com"
                     buttonText="Login with Google"
                     onSuccess={this.responseGoogle}
                     onFailure={this.responseGoogle}

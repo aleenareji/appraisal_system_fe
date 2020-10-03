@@ -3,6 +3,8 @@ import MUIDataTable from "mui-datatables";
 import SendIcon from '@material-ui/icons/Send';
 import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
+import Chip from '@material-ui/core/Chip';
+
 
 const Users = (props) => {
   const [users, setUsers] = useState(null);
@@ -21,6 +23,7 @@ const Users = (props) => {
       setUsers(_mapUsersToTable(props.usersList));
     }
   }, [props.usersList])
+  console.log('users ---->',users);
 
   useEffect(() => {
     if((Array.isArray(selectedCheckbox) && selectedCheckbox.length)){
@@ -45,6 +48,27 @@ const Users = (props) => {
       }))
     }
   }, [users, selectedCheckbox])
+  
+  // console.log('checkedData ---->',checkedData);
+  console.log('selectedUsers ------>',selectedUsers);
+
+  const onSendActions = () => {
+      setIsChecked(false)
+      console.log("TEST");
+      // const selectedName = selectedUsers[0];
+      // console.log('test name ---->',selectedName[0]);
+      const selectName = selectedUsers.map((name =>{
+        return name[0];
+      }))
+      let _mapToStatus = users.filter(name =>{
+
+        if( selectedUsers.includes(name)){
+          return name[2]= "Active";
+
+        }
+      });
+      console.log('_mapToStatus ----',_mapToStatus);
+  }
 
 
   const columns = [
@@ -53,12 +77,42 @@ const Users = (props) => {
     },
     {
       name: 'Email'
-    }
+    },
+    {
+      name: "Status",
+      // options: {
+      //   customBodyRender: (value, tableMeta, updateValue) => {
+      //     console.log('tableMeta --->',tableMeta);
+      //     const sendData = tableMeta.rowIndex;
+      //     console.log(sendData,"111");
+      //     const rowDataCheck = tableMeta.rowData;
+      //     if(sendData === '3'){
+      //       return (
+      //         <Chip label="Basic"  onClick ={() => {onSendActions(sendData)}}/>
+      //       );
+
+      //     }
+      //     else
+      //     return (
+      //       <Chip label="Else"  onClick ={() => {onSendActions(sendData)}}/>
+      //     );
+        
+      //   },
+      // },
+    },
   ];
 
   const onRowSelectionChange = (currentRowsSelected, allRowsSelected, rowsSelected) => {
     setSelectedCheckbox(rowsSelected)
   }
+  console.log("selectedCheckbox  ---->",selectedCheckbox);
+
+  // const customToolbarSelect = (selectedRows,displayData,setSelectedRows) => {
+  //   console.log('selectedRows ---->',selectedRows);
+  //   console.log('displayData ---->',displayData);
+  //   console.log('setSelectedRows ----->',setSelectedRows);
+
+  // }
   const options = {
     filterType: 'checkbox',
     onRowSelectionChange: onRowSelectionChange,
@@ -74,7 +128,7 @@ const Users = (props) => {
       (isChecked) ?
           <Box m={2}>
              <Tooltip title="Send">
-             <SendIcon variant="contained" color="primary" style={pointer} onClick={()=> setIsChecked(false)}/>
+             <SendIcon variant="contained" color="primary" style={pointer} onClick={ onSendActions}/>
              </Tooltip>
           </Box>
          :''}
@@ -83,6 +137,8 @@ const Users = (props) => {
       data={users !== null ? users : []}
       columns={columns}
       options={options}
+      displaySelectToolbar={false}
+      // customToolbarSelect ={customToolbarSelect}
     />
     </React.Fragment>
   )

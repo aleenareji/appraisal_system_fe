@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import history from '../../common/history';
@@ -6,9 +6,23 @@ import history from '../../common/history';
 const navMenu = [
   { path: '/dashboard/questions', name: 'Questions', icon: 'question-circle' },
   {path: '/dashboard/send-notification', name:' Send Notification',icon:'envelope'},
+  // {path: '/dashboard/answers', name:'Add Answers',icon:'reply'}
+];
+
+const employeeNavMenu = [
+  // { path: '/dashboard/questions', name: 'Questions', icon: 'question-circle' },
+  // {path: '/dashboard/send-notification', name:' Send Notification',icon:'envelope'},
   {path: '/dashboard/answers', name:'Add Answers',icon:'reply'}
 ];
 const Navigation = ({ className = null }) => {
+
+  const [role,setRole] = useState("");
+  console.log(role,'role in sidebar');
+
+  useEffect(() => {
+    setRole(localStorage.getItem("userRole"));
+  },[])
+
   return (
     <ul className={className ? className : ''}>
       <NavLink to="/dashboard" exact={true} activeClassName="active">
@@ -17,14 +31,26 @@ const Navigation = ({ className = null }) => {
           <p>Home</p>
         </li>
       </NavLink>
-      {navMenu.map((i, index) => (
+      { role ==='hr' ? 
+      (navMenu.map((i, index) => (
+       <NavLink to={`${i.path}`} activeClassName="active" key={index}>
+           <li>
+             <i className={`la la-${i.icon}`}></i>
+             <p>{i.name}</p>
+           </li>
+         </NavLink>
+       )))
+      
+      : (employeeNavMenu.map((i, index) => (
         <NavLink to={`${i.path}`} activeClassName="active" key={index}>
-          <li>
-            <i className={`la la-${i.icon}`}></i>
-            <p>{i.name}</p>
-          </li>
-        </NavLink>
-      ))}
+            <li>
+              <i className={`la la-${i.icon}`}></i>
+              <p>{i.name}</p>
+            </li>
+          </NavLink>
+        )))
+
+      }
     </ul>
   );
 };
@@ -32,6 +58,7 @@ const Navigation = ({ className = null }) => {
 function NavigationBar(props) {
   const onSignout = () => {
     localStorage.removeItem("myToken");
+    localStorage.removeItem("userRole");
     history.push('/login');
    }
   return (

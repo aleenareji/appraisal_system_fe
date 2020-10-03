@@ -101,7 +101,28 @@ function Questions(props) {
             questionId: newId,
             title: newQuestion.title,
             name: newQuestion.title,
-            isRequired:true
+            isRequired:true,
+            type: "matrixdropdown",
+            "choices": [
+              "Excelent", "Good", "Average", "Fair", "Poor"
+            ],
+            "columns": [
+              {
+                "name": "answer",
+                "title": "Please describe your answer",
+                "cellType": "text",
+                "isRequired": true
+              }, {
+                "name": "rate",
+                "title": "Please rate the answer"
+              },
+            ],
+            "rows":[
+              {
+                "value": "Answer",
+                "text": " "
+                },
+            ]
           }
           question[0].roles.levels.questions.push(updatedQuestion);
           localStorage.setItem('questions', JSON.stringify(question));
@@ -118,7 +139,8 @@ function Questions(props) {
         questionId: newId,
         title: newQuestion.title,
         name: newQuestion.title,
-        isRequired:true
+        isRequired:true,
+         type: "matrixdropdown",
       }
 
       question.map(item => {

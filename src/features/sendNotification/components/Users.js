@@ -79,7 +79,7 @@ const Users = (props) => {
       name: 'Email'
     },
     {
-      name: "Status",
+      name: "Send Status",
       // options: {
       //   customBodyRender: (value, tableMeta, updateValue) => {
       //     console.log('tableMeta --->',tableMeta);

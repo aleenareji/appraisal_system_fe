@@ -9,10 +9,10 @@ const navMenu = [
   // {path: '/dashboard/answers', name:'Add Answers',icon:'reply'}
 ];
 
-const employeeNavMenu = [
+const employeeNavMenu = [ 
   // { path: '/dashboard/questions', name: 'Questions', icon: 'question-circle' },
   // {path: '/dashboard/send-notification', name:' Send Notification',icon:'envelope'},
-  {path: '/dashboard/answers', name:'Add Answers',icon:'reply'}
+  {path: '/dashboard/answers', name:'Self Appraisal',icon:'reply'}
 ];
 const Navigation = ({ className = null }) => {
 
@@ -28,7 +28,7 @@ const Navigation = ({ className = null }) => {
       <NavLink to="/dashboard" exact={true} activeClassName="active">
         <li>
           <i className="la la-home"></i>
-          <p>Home</p>
+          <p>Dashboard</p>
         </li>
       </NavLink>
       { role ==='hr' ? 

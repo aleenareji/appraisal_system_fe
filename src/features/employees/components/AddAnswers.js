@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import * as Survey from 'survey-react';
 import 'survey-react/survey.css';
 
+import history from '../../../common/history';
+
 
 class AddAnswers extends Component {
   componentWillMount() {
@@ -19,10 +21,7 @@ class AddAnswers extends Component {
     console.log("heyho");
   }
   onClearButton =() => {
-    // this.model.reset();
-    // window.location.reload();
-    // Survey.render();
-    console.log("Clear button clicked");
+    history.push('/dashboard/answers');
   }
 
   render() {
@@ -52,9 +51,9 @@ class AddAnswers extends Component {
         showCompletedPage={false}
         allowClear ={true}
         onValueChanged={this.onValueChanged} />
-        {/* <button onClick={this.onClearButton}>
-          TEST
-        </button> */}
+        <button className ="cancel-button" onClick={this.onClearButton}>
+          Cancel
+        </button>
         </React.Fragment>
     );
   }
